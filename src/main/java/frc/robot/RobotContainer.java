@@ -10,7 +10,9 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 
 
@@ -27,8 +29,9 @@ public class RobotContainer
     private final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
     
     // Replace with CommandPS4Controller or CommandJoystick if needed
-    private final CommandXboxController driverController =
+    private final CommandXboxController m_controller =
             new CommandXboxController(OperatorConstants.DRIVER_CONTROLLER_PORT);
+    private final Drivetrain m_drive = Drivetrain.getInstance();
     
     
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -53,10 +56,10 @@ public class RobotContainer
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
         new Trigger(exampleSubsystem::exampleCondition)
                 .onTrue(new ExampleCommand(exampleSubsystem));
-        
+        m_drive.setDefaultCommand(new DriveCommand(m_controller));
         // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
         // cancelling on release.
-        driverController.b().whileTrue(exampleSubsystem.exampleMethodCommand());
+        m_controller.b().whileTrue(exampleSubsystem.exampleMethodCommand());
     }
     
     

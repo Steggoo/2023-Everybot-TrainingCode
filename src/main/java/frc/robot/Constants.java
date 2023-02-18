@@ -19,4 +19,11 @@ public final class Constants
     {
         public static final int DRIVER_CONTROLLER_PORT = 0;
     }
+    public static class DriveConstants
+    {
+        public static final int LEFT_MASTER_ID = 3;
+        public static final int RIGHT_MASTER_ID = 1;
+        public static final int LEFT_FOLLOWER_ID = 4;
+        public static final int RIGHT_FOLLOWER_ID = 2;
+    }
 }
