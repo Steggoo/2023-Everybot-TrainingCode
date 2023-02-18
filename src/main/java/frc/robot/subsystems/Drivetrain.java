@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
@@ -45,6 +46,11 @@ public class Drivetrain extends SubsystemBase {
         m_rightMaster = new WPI_TalonSRX(Constants.DriveConstants.RIGHT_MASTER_ID);
         m_leftFollower = new WPI_TalonSRX(Constants.DriveConstants.LEFT_FOLLOWER_ID);
         m_rightFollower = new WPI_TalonSRX(Constants.DriveConstants.RIGHT_FOLLOWER_ID);
+
+        m_rightMaster.setInverted(false);
+        m_rightFollower.setInverted(false);
+        m_leftMaster.setInverted(true);
+        m_leftFollower.setInverted(true);
 
         m_leftFollower.follow(m_leftMaster);
         m_rightFollower.follow(m_rightMaster);
