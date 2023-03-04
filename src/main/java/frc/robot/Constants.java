@@ -21,9 +21,21 @@ public final class Constants
     }
     public static class DriveConstants
     {
-        public static final int LEFT_MASTER_ID = 3;
         public static final int RIGHT_MASTER_ID = 1;
-        public static final int LEFT_FOLLOWER_ID = 4;
         public static final int RIGHT_FOLLOWER_ID = 2;
+        public static final int LEFT_MASTER_ID = 3;
+        public static final int LEFT_FOLLOWER_ID = 4;
+    }
+    public static class ArmConstants
+    {
+        public static final int ARM_PIVOT_ID = 5;
+        public static final int ARM_INTAKE_ID = 6;
+
+        public static final double PIVOT_FORWARD_LIMIT = 5;
+        public static final double PIVOT_REVERSE_LIMIT = 0;
+
+        public static final double PIVOT_KP = 0.1;
+        public static final double PIVOT_KI = 0.0;
+        public static final double PIVOT_KD = 0.0;
     }
 }

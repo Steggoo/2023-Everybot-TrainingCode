@@ -5,16 +5,16 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
+import frc.robot.commands.ArmToSetpointCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.ManualArmCommand;
+import frc.robot.subsystems.ArmPivot;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.ExampleSubsystem;
-
 
 
 /**
@@ -26,18 +26,18 @@ import frc.robot.subsystems.ExampleSubsystem;
 public class RobotContainer
 {
     // The robot's subsystems and commands are defined here...
-    private final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
     
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private final CommandXboxController m_controller =
             new CommandXboxController(OperatorConstants.DRIVER_CONTROLLER_PORT);
     private final Drivetrain m_drive = Drivetrain.getInstance();
+    private final ArmPivot m_armPivot = ArmPivot.getInstance();
     
     
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer()
     {
-        // Configure the trigger bindings
+        configDashboard();
         configureBindings();
     }
     
@@ -53,13 +53,19 @@ public class RobotContainer
      */
     private void configureBindings()
     {
-        // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-        new Trigger(exampleSubsystem::exampleCondition)
-                .onTrue(new ExampleCommand(exampleSubsystem));
         m_drive.setDefaultCommand(new DriveCommand(m_controller));
+        m_armPivot.setDefaultCommand(new ManualArmCommand(m_controller));
+
+        m_controller.a().whileTrue(new ArmToSetpointCommand(2.0));
         // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-        // cancelling on release.
-        m_controller.b().whileTrue(exampleSubsystem.exampleMethodCommand());
+        // cancelling on release.)
+    }
+
+    private void configDashboard()
+    {
+        ShuffleboardTab testCommands = Shuffleboard.getTab("Commands");
+
+        testCommands.add("Arm to 5", new ArmToSetpointCommand(5));
     }
     
     
@@ -68,9 +74,9 @@ public class RobotContainer
      *
      * @return the command to run in autonomous
      */
-    public Command getAutonomousCommand()
-    {
-        // An example command will be run in autonomous
-        return Autos.exampleAuto(exampleSubsystem);
-    }
+//    public Command getAutonomousCommand()
+//    {
+//        // An example command will be run in autonomous
+//        return;
+//    }
 }

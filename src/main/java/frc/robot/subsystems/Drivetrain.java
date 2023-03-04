@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
@@ -24,7 +23,7 @@ public class Drivetrain extends SubsystemBase {
      * the {@link #getInstance()} method to get the single instance (rather
      * than trying to construct an instance of this class.)
      */
-    private final static Drivetrain INSTANCE = new Drivetrain();
+    private static final Drivetrain INSTANCE = new Drivetrain();
 
     /**
      * Returns the Singleton instance of this Drivetrain. This static method
@@ -58,9 +57,9 @@ public class Drivetrain extends SubsystemBase {
         m_differentialDrive = new DifferentialDrive(m_leftMaster, m_rightMaster);
     }
 
-    public void drive(double leftInput, double rightInput)
+    public void drive(double drive, double steer)
     {
-        m_differentialDrive.arcadeDrive(leftInput, rightInput);
+        m_differentialDrive.arcadeDrive(drive, steer);
     }
 }
 

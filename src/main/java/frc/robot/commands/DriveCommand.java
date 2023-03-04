@@ -23,7 +23,7 @@ public class DriveCommand extends CommandBase {
 
     @Override
     public void execute() {
-        m_drivetrain.drive(m_controller.getLeftY(), m_controller.getRightY());
+        m_drivetrain.drive(m_controller.getLeftY(), m_controller.getLeftX());
     }
 
     @Override
