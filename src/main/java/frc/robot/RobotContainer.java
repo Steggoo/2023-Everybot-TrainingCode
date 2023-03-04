@@ -56,7 +56,10 @@ public class RobotContainer
         m_drive.setDefaultCommand(new DriveCommand(m_controller));
         m_armPivot.setDefaultCommand(new ManualArmCommand(m_controller));
 
-        m_controller.a().whileTrue(new ArmToSetpointCommand(2.0));
+        m_controller.y().onTrue(new ArmToSetpointCommand(15.0));
+        m_controller.x().onTrue(new ArmToSetpointCommand(10.0));
+        m_controller.a().onTrue(new ArmToSetpointCommand(3.0));
+        m_controller.b().onTrue(new ArmToSetpointCommand(0.0));
         // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
         // cancelling on release.)
     }

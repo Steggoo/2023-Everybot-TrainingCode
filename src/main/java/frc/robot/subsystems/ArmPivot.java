@@ -45,11 +45,14 @@ public class ArmPivot extends SubsystemBase {
         m_armPivot = new CANSparkMax(Constants.ArmConstants.ARM_PIVOT_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
         m_armPivot.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, (float) Constants.ArmConstants.PIVOT_FORWARD_LIMIT);
         m_armPivot.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, (float) Constants.ArmConstants.PIVOT_REVERSE_LIMIT);
+        m_armPivot.setIdleMode(CANSparkMax.IdleMode.kBrake);
 
         m_PIDController = m_armPivot.getPIDController();
         m_PIDController.setP(Constants.ArmConstants.PIVOT_KP);
         m_PIDController.setI(Constants.ArmConstants.PIVOT_KI);
         m_PIDController.setD(Constants.ArmConstants.PIVOT_KD);
+        m_PIDController.setSmartMotionMaxVelocity(Constants.ArmConstants.PIVOT_MAX_VELOCITY, 0);
+        // TODO: set max accel.
 
         m_armEncoder = m_armPivot.getEncoder();
     }

@@ -31,8 +31,9 @@ public final class Constants
         public static final int ARM_PIVOT_ID = 5;
         public static final int ARM_INTAKE_ID = 6;
 
-        public static final double PIVOT_FORWARD_LIMIT = 5;
-        public static final double PIVOT_REVERSE_LIMIT = 0;
+        public static final double PIVOT_FORWARD_LIMIT = 21.0;
+        public static final double PIVOT_REVERSE_LIMIT = 0.0;
+        public static final double PIVOT_MAX_VELOCITY = 0.5;
 
         public static final double PIVOT_KP = 0.1;
         public static final double PIVOT_KI = 0.0;

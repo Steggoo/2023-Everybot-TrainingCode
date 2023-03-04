@@ -25,11 +25,11 @@ public class ManualArmCommand extends CommandBase {
     public void execute() {
         if(m_controller.rightBumper().getAsBoolean())
         {
-            armPivot.moveArm(1);
+            armPivot.moveArm(0.5);
         }
         else if (m_controller.leftBumper().getAsBoolean())
         {
-            armPivot.moveArm(-1);
+            armPivot.moveArm(-0.5);
         }
         else
         {
