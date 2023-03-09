@@ -52,7 +52,7 @@ public class ArmPivot extends SubsystemBase {
         m_PIDController.setI(Constants.ArmConstants.PIVOT_KI);
         m_PIDController.setD(Constants.ArmConstants.PIVOT_KD);
         m_PIDController.setSmartMotionMaxVelocity(Constants.ArmConstants.PIVOT_MAX_VELOCITY, 0);
-        // TODO: set max accel.
+        m_PIDController.setSmartMotionMaxAccel(Constants.ArmConstants.PIVOT_MAX_ACCEL, 0);
 
         m_armEncoder = m_armPivot.getEncoder();
     }

@@ -5,6 +5,8 @@
 
 package frc.robot;
 
+import frc.robot.subsystems.Intake;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -31,12 +33,17 @@ public final class Constants
         public static final int ARM_PIVOT_ID = 5;
         public static final int ARM_INTAKE_ID = 6;
 
-        public static final double PIVOT_FORWARD_LIMIT = 21.0;
+        public static final double PIVOT_FORWARD_LIMIT = 35;
         public static final double PIVOT_REVERSE_LIMIT = 0.0;
         public static final double PIVOT_MAX_VELOCITY = 0.5;
+        public static final double PIVOT_MAX_ACCEL = 0.5;
 
+        public static final double INTAKE_SPEED = 1.0;
+        public static final double INTAKE_SPEED_HOLD = -0.1;
+        public static final double PIVOT_SPEED_OUT = 0.5;
+        public static final double PIVOT_SPEED_IN = -0.3;
         public static final double PIVOT_KP = 0.1;
         public static final double PIVOT_KI = 0.0;
-        public static final double PIVOT_KD = 0.0;
+        public static final double PIVOT_KD = 0.75;
     }
 }

@@ -1,29 +1,27 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.subsystems.ArmPivot;
+import frc.robot.subsystems.Intake;
 
 
-public class ManualArmCommand extends CommandBase {
-    private final ArmPivot m_armPivot = ArmPivot.getInstance();
+public class RunIntakeCommand extends CommandBase {
+    private final Intake m_intake = Intake.getInstance();
     private double speed;
-
-    public ManualArmCommand(double speed) {
-        // each subsystem used by the command must be passed into the
-        // addRequirements() method (which takes a vararg of Subsystem)
+    public RunIntakeCommand(double speed) {
         this.speed = speed;
-        addRequirements(m_armPivot);
+        addRequirements(m_intake);
     }
 
     @Override
     public void initialize() {
-
     }
 
     @Override
     public void execute() {
-        m_armPivot.moveArm(speed);
+        m_intake.runIntake(speed);
     }
 
     @Override
@@ -33,6 +31,6 @@ public class ManualArmCommand extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        m_armPivot.moveArm(0.0);
+        m_intake.runIntake(0.0);
     }
 }

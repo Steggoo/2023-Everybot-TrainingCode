@@ -13,6 +13,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ArmToSetpointCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ManualArmCommand;
+import frc.robot.commands.RunIntakeCommand;
 import frc.robot.subsystems.ArmPivot;
 import frc.robot.subsystems.Drivetrain;
 
@@ -54,12 +55,18 @@ public class RobotContainer
     private void configureBindings()
     {
         m_drive.setDefaultCommand(new DriveCommand(m_controller));
-        m_armPivot.setDefaultCommand(new ManualArmCommand(m_controller));
 
-        m_controller.y().onTrue(new ArmToSetpointCommand(15.0));
-        m_controller.x().onTrue(new ArmToSetpointCommand(10.0));
-        m_controller.a().onTrue(new ArmToSetpointCommand(3.0));
-        m_controller.b().onTrue(new ArmToSetpointCommand(0.0));
+        m_controller.a().whileTrue(new RunIntakeCommand(Constants.ArmConstants.INTAKE_SPEED));
+        m_controller.b().whileTrue(new RunIntakeCommand(-Constants.ArmConstants.INTAKE_SPEED));
+        m_controller.rightTrigger().whileTrue(new RunIntakeCommand(Constants.ArmConstants.INTAKE_SPEED_HOLD));
+
+        m_controller.rightBumper().whileTrue(new ManualArmCommand(Constants.ArmConstants.PIVOT_SPEED_OUT));
+        m_controller.leftBumper().whileTrue(new ManualArmCommand(Constants.ArmConstants.PIVOT_SPEED_IN));
+
+        m_controller.povLeft().whileTrue(new ArmToSetpointCommand(35));
+        m_controller.povUp().whileTrue(new ArmToSetpointCommand(30));
+        m_controller.povRight().whileTrue(new ArmToSetpointCommand(25));
+        m_controller.povDown().whileTrue(new ArmToSetpointCommand(20));
         // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
         // cancelling on release.)
     }
