@@ -38,6 +38,7 @@ public class Intake extends SubsystemBase {
     private Intake() {
         m_intake = new CANSparkMax(Constants.ArmConstants.ARM_INTAKE_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
         m_intake.setIdleMode(CANSparkMax.IdleMode.kBrake);
+        m_intake.setSmartCurrentLimit(Constants.ArmConstants.INTAKE_CURRENT_LIMIT);
     }
 
     public void runIntake (Double speed) {

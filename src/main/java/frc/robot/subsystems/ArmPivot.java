@@ -7,6 +7,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -46,6 +47,7 @@ public class ArmPivot extends SubsystemBase {
         m_armPivot.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, (float) Constants.ArmConstants.PIVOT_FORWARD_LIMIT);
         m_armPivot.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, (float) Constants.ArmConstants.PIVOT_REVERSE_LIMIT);
         m_armPivot.setIdleMode(CANSparkMax.IdleMode.kBrake);
+        m_armPivot.setSmartCurrentLimit(Constants.ArmConstants.PIVOT_CURRENT_LIMIT);
 
         m_PIDController = m_armPivot.getPIDController();
         m_PIDController.setP(Constants.ArmConstants.PIVOT_KP);
@@ -68,6 +70,9 @@ public class ArmPivot extends SubsystemBase {
         m_PIDController.setReference(clampedOutput, CANSparkMax.ControlType.kPosition);
     }
 
+    public CommandBase resetEncoder() {
+        return runOnce(() -> m_armEncoder.setPosition(0.0));
+    }
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Arm Pivot", m_armEncoder.getPosition());

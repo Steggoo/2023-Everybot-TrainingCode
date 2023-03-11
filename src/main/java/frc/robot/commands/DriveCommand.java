@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
 
 
@@ -23,7 +24,8 @@ public class DriveCommand extends CommandBase {
 
     @Override
     public void execute() {
-        m_drivetrain.drive(m_controller.getLeftY(), m_controller.getLeftX());
+        m_drivetrain.drive(m_controller.getLeftY() * Constants.DriveConstants.MAX_DRIVE_SPEED,
+                        m_controller.getLeftX() * Constants.DriveConstants.MAX_TURN_SPEED);
     }
 
     @Override

@@ -58,15 +58,16 @@ public class RobotContainer
 
         m_controller.a().whileTrue(new RunIntakeCommand(Constants.ArmConstants.INTAKE_SPEED));
         m_controller.b().whileTrue(new RunIntakeCommand(-Constants.ArmConstants.INTAKE_SPEED));
-        m_controller.rightTrigger().whileTrue(new RunIntakeCommand(Constants.ArmConstants.INTAKE_SPEED_HOLD));
+        m_controller.x().whileTrue(new RunIntakeCommand(Constants.ArmConstants.INTAKE_SPEED_HOLD));
+        m_controller.start().onTrue(m_armPivot.resetEncoder());
 
         m_controller.rightBumper().whileTrue(new ManualArmCommand(Constants.ArmConstants.PIVOT_SPEED_OUT));
         m_controller.leftBumper().whileTrue(new ManualArmCommand(Constants.ArmConstants.PIVOT_SPEED_IN));
 
-        m_controller.povLeft().whileTrue(new ArmToSetpointCommand(35));
-        m_controller.povUp().whileTrue(new ArmToSetpointCommand(30));
-        m_controller.povRight().whileTrue(new ArmToSetpointCommand(25));
-        m_controller.povDown().whileTrue(new ArmToSetpointCommand(20));
+        m_controller.povLeft().whileTrue(new ArmToSetpointCommand(30));
+        m_controller.povUp().whileTrue(new ArmToSetpointCommand(Constants.ArmConstants.SUBSTATION_CONE));
+        m_controller.povRight().whileTrue(new ArmToSetpointCommand(Constants.ArmConstants.SUBSTATION_CUBE));
+        m_controller.povDown().whileTrue(new ArmToSetpointCommand(Constants.ArmConstants.MIDDLE_SCORE));
         // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
         // cancelling on release.)
     }
